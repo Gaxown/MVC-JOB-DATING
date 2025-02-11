@@ -1,22 +1,19 @@
 {
-  "name": "mohamed/brief14",
-  "autoload": {
-    "psr-4": {
-      "App\\Core\\": "app/core",
-      "App\\Controllers\\": "app/controllers",
-      "App\\Models\\": "app/models"
+    "name": "lenovo/mvc-job-dating",
+    "autoload": {
+        "psr-4": {
+            "Lenovo\\MvcJobDating\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "soaud arziki",
+            "email": "arziki.souad@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^11.41",
+        "twig/twig": "^3.19",
+        "vlucas/phpdotenv": "^5.6"
     }
-  },
-  "authors": [
-    {
-      "name": "Mohamed Karroumi",
-      "email": "mkaroumi123@gmail.com"
-    }
-  ],
-  "require": {
-    "illuminate/database": "^11.41",
-    "twig/twig": "^3.0",
-    "vlucas/phpdotenv": "^5.6",
-    "larapack/dd": "^1.1"
-  }
 }
