@@ -16,4 +16,4 @@ $dotenv->load();
 Session::start();
 Database::init();
 
-include_once '../config/routes.php';
+include_once '../routes/routes.php';

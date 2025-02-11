@@ -29,10 +29,12 @@ class View
 
         self::$twig->addFunction(new TwigFunction('session', function () {
             return new class {
-                public function has($key) {
+                public function has($key)
+                {
                     return Session::has($key);
                 }
-                public function get($key) {
+                public function get($key)
+                {
                     $value = Session::get($key);
                     Session::remove($key);
                     return $value;
