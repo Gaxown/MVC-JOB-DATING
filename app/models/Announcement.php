@@ -7,10 +7,10 @@ use App\Core\Model;
 class Announcement extends Model
 {
     // protected $table = 'announcements';
-    protected $fillable = ['title', 'content', 'company_id'];
-    protected $timestamps = true;
+    protected $fillable = ['cover', 'title', 'descripttion', 'condidates_count', 'company_id'];
+    public $timestamps = true;
 
-    public function getAllAnnouncements()
+    public static function getAllAnnouncements()
     {
         return self::all();
     }
