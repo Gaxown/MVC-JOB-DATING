@@ -7,7 +7,7 @@ use App\Core\Model;
 class Announcement extends Model
 {
     // protected $table = 'announcements';
-    protected $fillable = ['title', 'content', 'company_id'];
+    protected $fillable = ['cover', 'title', 'descripttion', 'condidates_count', 'company_id'];
     protected $timestamps = true;
 
     public function getAllAnnouncements()
@@ -39,13 +39,14 @@ class Announcement extends Model
         return $announcement;
     }
 
+    public function getCompany()
+    {
+        return Company::find($this->company_id);
+    }
+
+
     public function company()
     {
         return $this->belongsTo(Company::class);
-    }
-
-    public function getCompanyUsername()
-    {
-        return Company::find($this->company_id);
     }
 }
