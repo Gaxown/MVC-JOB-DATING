@@ -1,3 +1,5 @@
+<?php
+$loader = new \Twig\Loader\FilesystemLoader([__DIR__ . '/../views', __DIR__ . '/../views/tools']);
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +10,16 @@
 </head>
 <body>
     <!-- Include Header -->
-    <?php include 'header.php'; ?>
+    {% include 'tools/header.twig' %}
+    
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
+    
         <h1 class="text-3xl font-bold mb-8 text-center">Offres d'Emploi</h1>
+        <form action="/logout" method="get">
+            <button>logout</button>
+        </form>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Job Offer 1 -->
@@ -29,40 +36,13 @@
                     <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Consulter les details</button>
                 </div>
             </div>
-
             <!-- Job Offer 2 -->
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                <img src="https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Company Logo" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-2">Développeur Web Full Stack</h2>
-                    <p class="text-gray-600 mb-4">TechInnovate Solutions</p>
-                    <p class="text-gray-700 mb-4">Nous recherchons un développeur web passionné pour rejoindre notre équipe dynamique. Maîtrise de JavaScript, React et Node.js requise.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Candidatures: 12</span>
-                        <span class="text-sm text-gray-500">Publié le: 10 Février 2025</span>
-                    </div>
-                    <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Consulter les details</button>
-                </div>
-            </div>
-
             <!-- Job Offer 3 -->
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                <img src="https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Company Logo" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-2">Développeur Web Full Stack</h2>
-                    <p class="text-gray-600 mb-4">TechInnovate Solutions</p>
-                    <p class="text-gray-700 mb-4">Nous recherchons un développeur web passionné pour rejoindre notre équipe dynamique. Maîtrise de JavaScript, React et Node.js requise.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Candidatures: 12</span>
-                        <span class="text-sm text-gray-500">Publié le: 10 Février 2025</span>
-                    </div>
-                    <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Consulter les details</button>
-                </div>
-            </div>
+
         </div>
     </main>
 
     <!-- Include Footer -->
-    <?php include 'footer.php'; ?>
+    {% include 'tools/footer.twig' %}
 </body>
 </html>
