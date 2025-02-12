@@ -26,14 +26,14 @@ class HomeController extends Controller
 
         $announcements = Announcement::getAllAnnouncements();
 
-        // switch ($user->role->name) {
-        //     case 'admin':
-        //         return View::render('admin/dashbord', ['user' => $user, 'announcements' => $announcements]);
-        //     case 'user':
-        //         return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
-        //     default:
-        //         return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
-        // }
+        switch ($user->role->name) {
+            case 'admin':
+                return View::render('admin/dashbord', ['user' => $user, 'announcements' => $announcements]);
+            case 'user':
+                return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
+            default:
+                return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
+        }
         return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
 
     }

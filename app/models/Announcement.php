@@ -44,7 +44,7 @@ class Announcement extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function getCompanyUsername()
+    public function getCompany()
     {
         return Company::find($this->company_id);
     }
