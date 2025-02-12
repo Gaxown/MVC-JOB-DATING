@@ -1,0 +1,129 @@
+=/app/views/admin/offers.twig
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Offers Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar_admin.twig' %}
+
+    <!-- Main Content -->
+    <div class="ml-64 p-8">
+    <div class="bg-white rounded-lg shadow">
+        <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-xl font-semibold">Job Offers Management</h2>
+            <a href="/offers/create" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
+                <i class='bx bx-plus mr-2'></i>Add New Offer
+            </a>
+        </div>
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Fake Job Offer 1 -->
+                <div class="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://source.unsplash.com/400x300/?office,work" alt="Software Engineer"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://source.unsplash.com/50x50/?company,logo" alt="TechCorp"
+                                class="w-10 h-10 rounded-full object-cover mr-3">
+                            <span class="font-medium text-gray-900">TechCorp</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Software Engineer</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">Develop and maintain web applications using modern technologies.</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class='bx bx-user-plus mr-2'></i>
+                            <span>5 candidates needed</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="/offers/edit/1"
+                                class="flex items-center px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                                <i class='bx bx-edit mr-2'></i> Update
+                            </a>
+                            <button type="button"
+                                class="flex items-center px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                                onclick="confirm('Are you sure you want to delete this offer?')">
+                                <i class='bx bx-trash mr-2'></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fake Job Offer 2 -->
+                <div class="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://source.unsplash.com/400x300/?business,meeting" alt="Marketing Manager"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://source.unsplash.com/50x50/?marketing,logo" alt="MarketPlus"
+                                class="w-10 h-10 rounded-full object-cover mr-3">
+                            <span class="font-medium text-gray-900">MarketPlus</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Marketing Manager</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">Lead marketing campaigns and optimize digital strategies.</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class='bx bx-user-plus mr-2'></i>
+                            <span>3 candidates needed</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="/offers/edit/2"
+                                class="flex items-center px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                                <i class='bx bx-edit mr-2'></i> Update
+                            </a>
+                            <button type="button"
+                                class="flex items-center px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                                onclick="confirm('Are you sure you want to delete this offer?')">
+                                <i class='bx bx-trash mr-2'></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fake Job Offer 3 -->
+                <div class="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://source.unsplash.com/400x300/?technology,startup" alt="UI/UX Designer"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://source.unsplash.com/50x50/?design,logo" alt="Creative Solutions"
+                                class="w-10 h-10 rounded-full object-cover mr-3">
+                            <span class="font-medium text-gray-900">Creative Solutions</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">UI/UX Designer</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">Design user-friendly interfaces with a focus on accessibility.</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class='bx bx-user-plus mr-2'></i>
+                            <span>2 candidates needed</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="/offers/edit/3"
+                                class="flex items-center px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                                <i class='bx bx-edit mr-2'></i> Update
+                            </a>
+                            <button type="button"
+                                class="flex items-center px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                                onclick="confirm('Are you sure you want to delete this offer?')">
+                                <i class='bx bx-trash mr-2'></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

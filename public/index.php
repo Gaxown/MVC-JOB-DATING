@@ -10,10 +10,10 @@ use Dotenv\Dotenv;
 
 include '../vendor/autoload.php';
 
+
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 Session::start();
 Database::init();
-
-include_once '../config/routes.php';
+include_once '../routes/routes.php';

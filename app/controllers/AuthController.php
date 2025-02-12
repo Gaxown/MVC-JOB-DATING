@@ -62,8 +62,12 @@ class AuthController extends Controller
 
         Auth::login($user);
         if (Auth::user()->role->name == 'admin') {
+            header('Location: admin/dashboard');
+            exit();
+
+        } else {
+            header('Location: /');
+            exit();
         }
-        header('Location: /');
-        exit();
     }
 }
