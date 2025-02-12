@@ -13,3 +13,6 @@ $r->post('/register', [AuthController::class, 'register']);
 
 $r->get('/', [HomeController::class, 'index']);
 $r->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+
+//company routes
+
