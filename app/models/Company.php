@@ -2,6 +2,7 @@
 namespace App\models;
 
 use App\Core\Model;
+use App\Models\Announcement;
 
 class Company extends Model {
     protected $table = "companies";
@@ -29,7 +30,7 @@ class Company extends Model {
     // }
 
     public function announcements(){
-        $this->hasMany(Announcements::class);
+        $this->hasMany(Announcement::class);
     }
 
     public $timestamps = true;

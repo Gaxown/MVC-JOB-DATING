@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\AuthController;
+use App\Controllers\CompanyController;
 use App\Controllers\HomeController;
 use App\Core\Router;
 
@@ -12,7 +13,10 @@ $r->get('/register', [AuthController::class, 'showRegister']);
 $r->post('/register', [AuthController::class, 'register']);
 
 $r->get('/', [HomeController::class, 'index']);
-$r->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
 //company routes
 
+$r->get('/admin/companies', [CompanyController::class, 'index']);
+$r->post('/login', [CompanyController::class, 'createCompany']);
+
+$r->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

@@ -5,16 +5,16 @@ use App\Core\Controller;
 use App\models\Company;
 use App\Core\View;
 
-class CompanyControler extends Controller{
+class CompanyController extends Controller{
     public function __construct()
     {
         
     }
 
-    public function showPageCompanies(){
-        // $companies = Company::showCompanies();
+    public function index(){
         $companies = Company::all();
-        return View::render('companies', [$companies=>'$companies']);
+        // return View::render('auth/test');
+        return View::render('admin/companies', compact('companies'));
     }
 
     public function createCompany(){
