@@ -1,5 +1,5 @@
 {
-  "name": "mohamed/brief14",
+  "name": "gaxown/job-dating-mvc",
   "autoload": {
     "psr-4": {
       "App\\Core\\": "app/core",
@@ -7,15 +7,9 @@
       "App\\Models\\": "app/models"
     }
   },
-  "authors": [
-    {
-      "name": "Mohamed Karroumi",
-      "email": "mkaroumi123@gmail.com"
-    }
-  ],
   "require": {
     "illuminate/database": "^11.41",
-    "twig/twig": "^3.19",
+    "twig/twig": "3.19",
     "vlucas/phpdotenv": "^5.6",
     "larapack/dd": "^1.1"
   }

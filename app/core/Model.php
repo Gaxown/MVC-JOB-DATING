@@ -53,6 +53,12 @@ class Model extends Eloquent
         return static::query()->updateOrCreate($attributes, $values);
     }
 
+    public static function deleteInstance($id)
+    {
+        $instance = static::findOrFail($id);
+        $instance->delete();
+    }
+
     public static function testConnection()
     {
         try {

@@ -13,7 +13,8 @@ class View
     public static function init()
     {
         $loader = new FilesystemLoader('../app/views');
-        self::$twig = new Environment($loader, []);
+        self::$twig = new Environment($loader, [], ['debug' => true]);
+        self::$twig->addExtension(new \Twig\Extension\DebugExtension());
 
         self::$twig->addFunction(new TwigFunction('auth', function () {
             return Auth::user();
@@ -29,10 +30,12 @@ class View
 
         self::$twig->addFunction(new TwigFunction('session', function () {
             return new class {
-                public function has($key) {
+                public function has($key)
+                {
                     return Session::has($key);
                 }
-                public function get($key) {
+                public function get($key)
+                {
                     $value = Session::get($key);
                     Session::remove($key);
                     return $value;

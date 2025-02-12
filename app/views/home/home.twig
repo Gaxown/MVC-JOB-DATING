@@ -1,5 +1,3 @@
-<?php
-$loader = new \Twig\Loader\FilesystemLoader([__DIR__ . '/../views', __DIR__ . '/../views/tools']);
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,20 +5,21 @@ $loader = new \Twig\Loader\FilesystemLoader([__DIR__ . '/../views', __DIR__ . '/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouCode Job Dating - Offres d'Emploi</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- Include Header -->
     {% include 'tools/header.twig' %}
-    
 
+    
+    
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
     
         <h1 class="text-3xl font-bold mb-8 text-center">Offres d'Emploi</h1>
-        
         <!-- Search Form -->
-        <div class="mb-6">
-            <input type="text" id="search" placeholder="Rechercher des offres d'emploi..." class="w-full p-2 border border-gray-300 rounded">
+        <div class="flex items-center justify-center mb-6">
+            <input type="text" id="search" placeholder="Rechercher des offres d'emploi..." class="w-64 p-2 border border-gray-300 rounded">
         </div>
 
         <!-- Search Results -->
@@ -29,60 +28,42 @@ $loader = new \Twig\Loader\FilesystemLoader([__DIR__ . '/../views', __DIR__ . '/
         </div>
 
         <!-- Job Offers -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="job-offers">
+        <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6" id="job-offers">
             <!-- Job Offer 1 -->
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                <img src="https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Company Logo" class="w-full h-48 object-cover">
+            {% for announcement in announcements %}
+            <div class="bg-white shadow-md rounded-lg overflow-hidden job-offer w-80 h-auto">
+                <img src="{{ announcement.cover }}" alt="Company Logo" class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-2">Développeur Web Full Stack</h2>
-                    <p class="text-gray-600 mb-4">TechInnovate Solutions</p>
-                    <p class="text-gray-700 mb-4">Nous recherchons un développeur web passionné pour rejoindre notre équipe dynamique. Maîtrise de JavaScript, React et Node.js requise.</p>
+                    <h2 class="text-xl font-semibold mb-2">{{ announcement.title }}</h2>
+                    <p class="text-gray-600 mb-4">{{ announcement.getCompanyUsername() }}</p>
+                    <p class="text-gray-700 mb-4">{{ announcement.description }}</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Candidatures: 12</span>
-                        <span class="text-sm text-gray-500">Publié le: 10 Février 2025</span>
+                        <span class="text-sm text-gray-500">{{ announcement.candidates_count }}</span>
+                        <span class="text-sm text-gray-500">Publié le: {{ announcement.created_at }}</span>
                     </div>
                     <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Consulter les details</button>
                 </div>
             </div>
-            <!-- Job Offer 2 -->
-            <!-- Job Offer 3 -->
-
+            {% endfor %}
         </div>
     </main>
 
     <!-- Include Footer -->
     {% include 'tools/footer.twig' %}
+<script>
+        // Fonction de recherche
+        $(document).ready(function() {
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#job-offers .job-offer").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
 
-    <script>
-        document.getElementById('search').addEventListener('input', function() {
-            const query = this.value;
-            if (query.length > 2) {
-                fetch(`/search?query=${query}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const resultsContainer = document.getElementById('search-results');
-                        resultsContainer.innerHTML = '';
-                        data.forEach(job => {
-                            const jobElement = document.createElement('div');
-                            jobElement.classList.add('bg-white', 'shadow-md', 'rounded-lg', 'overflow-hidden');
-                            jobElement.innerHTML = `
-                                <img src="${job.image}" alt="Company Logo" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h2 class="text-xl font-semibold mb-2">${job.title}</h2>
-                                    <p class="text-gray-600 mb-4">${job.company}</p>
-                                    <p class="text-gray-700 mb-4">${job.description}</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm text-gray-500">Candidatures: ${job.candidates_count}</span>
-                                        <span class="text-sm text-gray-500">Publié le: ${job.published_at}</span>
-                                    </div>
-                                    <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Consulter les details</button>
-                                </div>
-                            `;
-                            resultsContainer.appendChild(jobElement);
-                        });
-                    });
-            }
         });
-    </script>
+</script>
+
+
+     
 </body>
 </html>
