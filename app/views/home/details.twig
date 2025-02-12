@@ -12,16 +12,22 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-8 text-center">{{ job.title }}</h1>
+        <h1 class="text-3xl font-bold mb-8 text-center">{{ announcement.title }}</h1>
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="{{ job.cover }}" alt="Company Logo" class="w-full h-48 object-cover">
+            <img src="{{ announcement.getCompany().cover }}" alt="Company Cover" class="w-full h-48 object-cover">
+<div class="ml-2 mt-4">
+    <img src="{{ announcement.getCompany().logo }}" alt="Company Logo" class="h-16 w-16 object-cover rounded-full">
+</div>
+
             <div class="p-6">
-                <h2 class="text-xl font-semibold mb-2">{{ job.title }}</h2>
-                <p class="text-gray-600 mb-4">{{ job.company.name }}</p>
-                <p class="text-gray-700 mb-4">{{ job.description }}</p>
-                <div class="flex justify-between items-center">
-                    <span class="text-sm text-gray-500">Candidatures: {{ job.candidates_count }}</span>
-                    <span class="text-sm text-gray-500">Publié le: {{ job.published_at }}</span>
+                <p class="text-gray-700 mb-4">{{ announcement.description }}</p>
+                <p class="text-sm text-gray-500">Publié le: {{ announcement.created_at|date('d M Y') }}</p>
+                <p class="text-sm text-gray-500">Candidatures: {{ announcement.candidates_count }}</p>
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold">Informations sur l'entreprise</h3>
+                    <p class="text-gray-600">Nom: {{ announcement.getCompany().name }}</p>
+                    <p class="text-gray-600">Adresse: {{ announcement.getCompany().location }}</p>
+                    <p class="text-gray-600">Site web: <a href="{{ announcement.getCompany().website }}" class="text-blue-500">{{ announcement.getCompany().website }}</a></p>
                 </div>
             </div>
         </div>
