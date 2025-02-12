@@ -20,10 +20,11 @@
 
             <!-- Navigation Links -->
             <nav class="hidden md:flex space-x-4">
-                <a href="../home/home.twig" class="hover:text-gray-300">Home</a>
-                <a href="#" class="hover:text-gray-300">About</a>
+                <form action="/" method="get">
+                <button class="hover:text-gray-300">Page Principale</button>
+                </form>
                 <form action="/logout" method="get">
-                <button class="hover:text-gray-300">Logout</button>
+                <button class="hover:text-gray-300">Déconnexion</button>
                 </form>
             </nav>
 
@@ -40,9 +41,12 @@
         <!-- Mobile Menu (Hidden by default) -->
         <div id="mobile-menu" class="md:hidden hidden bg-gray-700">
             <nav class="px-4 pt-2 pb-4 space-y-2">
-                <a href="#" class="block hover:bg-gray-600 px-2 py-1">Home</a>
-                <a href="#" class="block hover:bg-gray-600 px-2 py-1">About</a>
-                <a href="#" class="block hover:bg-gray-600 px-2 py-1">Services</a>
+                <form action="/" method="get">
+                <button class="hover:text-gray-300">Page Principale</button>
+                </form>
+                <form action="/logout" method="get">
+                <button class="hover:text-gray-300">Déconnexion</button>
+                </form>
             </nav>
         </div>
     </header>
