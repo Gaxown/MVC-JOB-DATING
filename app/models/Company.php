@@ -6,7 +6,7 @@ use App\Core\Model;
 
 class Company extends Model
 {
-    protected $table = 'companies';
+    // protected $table = 'companies';
     protected $fillable = ['name', 'email', 'logo', 'website'];
 
     public function announcements()
