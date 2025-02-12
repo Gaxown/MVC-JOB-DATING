@@ -37,10 +37,10 @@ try {
     $capsule->bootEloquent();
 
     // Include migration files in correct order (handling dependencies)
-    // require_once __DIR__ . '/migrations/2025_02_10_000003_create_permissions_table.php';  // 1. Permissions first
-    // require_once __DIR__ . '/migrations/2025_02_10_000004_create_roles_table.php';       // 2. Then Roles
-    // require_once __DIR__ . '/migrations/2025_02_10_000005_create_role_permissions_table.php'; // 3. Role-Permissions relationship
-    // require_once __DIR__ . '/migrations/2025_02_10_000006_create_users_table.php';       // 4. Users (depends on roles)
+    require_once __DIR__ . '/migrations/2025_02_10_000003_create_permissions_table.php';  // 1. Permissions first
+    require_once __DIR__ . '/migrations/2025_02_10_000004_create_roles_table.php';       // 2. Then Roles
+    require_once __DIR__ . '/migrations/2025_02_10_000005_create_role_permissions_table.php'; // 3. Role-Permissions relationship
+    require_once __DIR__ . '/migrations/2025_02_10_000006_create_users_table.php';       // 4. Users (depends on roles)
     require_once __DIR__ . '/migrations/2025_02_10_000000_create_companies_table.php'; // 5. Entreprises
     require_once __DIR__ . '/migrations/2025_02_10_000002_create_announcements_table.php';    // 6. Annonces (depends on entreprises)
 

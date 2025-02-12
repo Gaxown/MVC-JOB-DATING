@@ -12,7 +12,8 @@ class Validator
         'min' => 'The :field must be at least :param characters',
         'max' => 'The :field must not exceed :param characters',
         'numeric' => 'The :field must be numeric',
-        'match' => 'The :field must match :param'
+        'match' => 'The :field must match :param',
+        'password' => 'The :field must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
     ];
 
     public static function validate($data, $rules)
@@ -70,6 +71,28 @@ class Validator
     {
         if (strlen($value) > $max) {
             self::addError($field, 'max', ['param' => $max]);
+        }
+    }
+
+
+    protected static function validateNumeric($field, $value)
+    {
+        if (!is_numeric($value)) {
+            self::addError($field, 'numeric');
+        }
+    }
+
+    protected static function validateMatch($field, $value, $match)
+    {
+        if ($value !== $match) {
+            self::addError($field, 'match', ['param' => $match]);
+        }
+    }
+
+    protected static function validatePassword($field, $value)
+    {
+        if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])/', $value)) {
+            self::addError($field, 'password');
         }
     }
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de l'Offre d'Emploi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Include Header -->
+    {% include 'tools/header.twig' %}
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center">{{ job.title }}</h1>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <img src="{{ job.cover }}" alt="Company Logo" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold mb-2">{{ job.title }}</h2>
+                <p class="text-gray-600 mb-4">{{ job.company.name }}</p>
+                <p class="text-gray-700 mb-4">{{ job.description }}</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Candidatures: {{ job.candidates_count }}</span>
+                    <span class="text-sm text-gray-500">Publié le: {{ job.published_at }}</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Include Footer -->
+    {% include 'tools/footer.twig' %}
+</body>
+</html>
