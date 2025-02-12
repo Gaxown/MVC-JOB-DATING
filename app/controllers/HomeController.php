@@ -25,11 +25,11 @@ class HomeController extends Controller
 
         switch ($user->role->name) {
             case 'admin':
-                return View::render('home/admin', ['user' => $user]);
-            case 'teacher':
-                return View::render('home/teacher', ['user' => $user]);
+                return View::render('admin/addAnnonce', ['user' => $user]);
+            case 'user':
+                return View::render('home/home', ['user' => $user]);
             default:
-                return View::render('home/user', ['user' => $user]);
+                return View::render('home/home', ['user' => $user]);
         }
     }
 }

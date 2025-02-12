@@ -1,0 +1,94 @@
+/dashbord.twig
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+
+    <!-- Sidebar -->
+    <div class="fixed left-0 top-0 w-64 h-full bg-white p-4 z-50 shadow-lg">
+        <a href="#" class="flex items-center pb-4 border-b border-gray-200">
+            <h2 class="font-bold text-2xl">Job <span class="bg-blue-500 text-white px-2 rounded-md">Dating</span></h2>
+        </a>
+        <span class="text-gray-400 font-bold">dashboard Admin</span>
+        <ul class="mt-4">
+            <span class="text-gray-400 font-bold">MENU</span>
+            <li class="my-2">
+                <a href="/dashboard" class="flex items-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <i class='bx bx-home mr-3'></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="my-2">
+                <a href="/users" class="flex items-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <i class='bx bx-user mr-3'></i>
+                    <span>Users</span>
+                </a>
+            </li>
+            <li class="my-2">
+                <a href="/companies" class="flex items-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <i class='bx bx-building mr-3'></i>
+                    <span>Companies</span>
+                </a>
+            </li>
+            <li class="my-2">
+                <a href="/offers" class="flex items-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <i class='bx bx-briefcase mr-3'></i>
+                    <span>Offers</span>
+                </a>
+            </li>
+        </ul>
+        <form action="/logout" method="get" class="mt-4">
+            <button type="submit" class="w-full flex items-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+                <i class='bx bx-log-out mr-3'></i>
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 p-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-gray-500 text-sm">Total Users</p>
+                        <h3 class="text-2xl font-bold">{{ users_count }} </h3>
+                    </div>
+                    <i class='bx bx-user text-3xl text-blue-500'></i>
+                </div>
+                <a href="/users" class="text-blue-500 text-sm mt-4 inline-block hover:underline">View all users</a>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-gray-500 text-sm">Total Companies</p>
+                        <h3 class="text-2xl font-bold">{{ companies_count }}</h3>
+                    </div>
+                    <i class='bx bx-building text-3xl text-green-500'></i>
+                </div>
+                <a href="/companies" class="text-blue-500 text-sm mt-4 inline-block hover:underline">View all companies</a>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-gray-500 text-sm">Total Offers</p>
+                        <h3 class="text-2xl font-bold">{{ offers_count }}</h3>
+                    </div>
+                    <i class='bx bx-briefcase text-3xl text-orange-500'></i>
+                </div>
+                <a href="/offers" class="text-blue-500 text-sm mt-4 inline-block hover:underline">View all offers</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
