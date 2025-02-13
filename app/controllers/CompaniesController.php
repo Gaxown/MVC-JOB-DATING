@@ -1,18 +1,22 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\models\Company;
+use App\Models\Company;
 use App\Core\View;
 
-class CompaniesController extends Controller{
+class CompaniesController extends Controller
+{
 
-    public function index(){
+    public function index()
+    {
         $companies = Company::all();
         return View::render('admin/companies', compact('companies'));
     }
 
-    public function createCompany(){
+    public function createCompany()
+    {
         $company = [
             'name' => $_POST['name'],
             'logo' => $_POST['logo'] ?? '',
@@ -29,23 +33,28 @@ class CompaniesController extends Controller{
         exit();
     }
 
-    public function showFormCreateCompany(){
-        return View::render('admin/addCompany');
+    public function CreateForm()
+    {
+        return View::render('admin/companies/create');
     }
-    public function showFormUpdateCompany($id){
-    
+    public function updateForm($id)
+    {
         $company = Company::find($id);
-        return View::render('admin/updateCompany', compact('company'));
+        return View::render('admin/companies/update', compact('company'));
     }
 
-    public function updateCompany($id){
+    public function updateCompany($id)
+    {
         Company::updateOrCreate($id);
         header('Location:/admin/companies');
         exit();
     }
 
-    public function deleteCompany($id){
-
+    public function deleteCompany($id)
+    {
+        // $company = Company::findOrFail($id);
+        // $company = Company::find($id);
+        // $company->delete();
         Company::deleteInstance($id);
         header('Location:/admin/companies');
         

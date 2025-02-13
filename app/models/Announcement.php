@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Core\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Announcement extends Model
 {
-    // protected $table = 'announcements';
+    use SoftDeletes;
     protected $fillable = ['cover', 'title', 'descripttion', 'condidates_count', 'company_id'];
     public $timestamps = true;
 
@@ -39,13 +39,26 @@ class Announcement extends Model
         return $announcement;
     }
 
+    public function getCompany()
+    {
+        return Company::find($this->company_id);
+    }
+
+
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
 
-    public function getCompanyUsername()
+    public static function getAllSoftDeletedAnnouncements()
     {
-        return Company::find($this->company_id);
+    return self::onlyTrashed()->get();
     }
+
+    public static function restoreAnnouncement($id)
+{
+    $announcement = self::onlyTrashed()->findOrFail($id);
+    $announcement->restore();
+    return $announcement;
+}
 }
