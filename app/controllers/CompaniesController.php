@@ -9,7 +9,6 @@ class CompaniesController extends Controller{
 
     public function index(){
         $companies = Company::all();
-        // return View::render('auth/test');
         return View::render('admin/companies', compact('companies'));
     }
 
@@ -26,29 +25,29 @@ class CompaniesController extends Controller{
             'capital' => $_POST['capital'] ?? '',
         ];
         Company::create($company);
-        header('Location: companies');
+        header('Location:/admin/companies');
         exit();
     }
 
     public function showFormCreateCompany(){
         return View::render('admin/addCompany');
     }
-    public function showFormUpdateCompany(){
-        return View::render('admin/updateCompany');
+    public function showFormUpdateCompany($id){
+    
+        $company = Company::find($id);
+        return View::render('admin/updateCompany', compact('company'));
     }
 
     public function updateCompany($id){
         Company::updateOrCreate($id);
-        header('Location: companies');
+        header('Location:/admin/companies');
         exit();
     }
 
     public function deleteCompany($id){
-        // $company = Company::findOrFail($id);
-        // $company = Company::find($id);
-        // $company->delete();
+
         Company::deleteInstance($id);
-        header('Location: companies');
-        exit();
+        header('Location:/admin/companies');
+        
     }
 }

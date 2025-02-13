@@ -29,7 +29,7 @@ $r->post('/admin/addCompany', [CompaniesController::class, 'createCompany']);
 $r->get('/admin/addCompany', [CompaniesController::class, 'showFormCreateCompany']);
 $r->get('/admin/company/update/{id}', [CompaniesController::class, 'showFormUpdateCompany']);
 // $r->post('/admin/companies/edit/{company.id}', [CompaniesController::class, 'updateCompany']);
-$r->post('/admin/companies/delete/{company.id}', [CompaniesController::class, 'deleteCompany']);
+$r->post('/admin/companies/delete/{id}', [CompaniesController::class, 'deleteCompany']);
 
 
 $r->get('/', [HomeController::class, 'index']);
