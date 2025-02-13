@@ -28,7 +28,7 @@ class HomeController extends Controller
 
         switch ($user->role->name) {
             case 'admin':
-                return View::render('admin/companies', ['user' => $user, 'announcements' => $announcements]);
+                return View::render('admin/dashbord', ['user' => $user, 'announcements' => $announcements]);
             case 'user':
                 return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
             default:
@@ -36,5 +36,15 @@ class HomeController extends Controller
         }
         return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
 
+    }
+
+    public function dashboardAdmin(){
+        return View::render('admin/dashbord');
+    }
+    public function pageUsers(){
+        return View::render('admin/users');
+    }
+    public function pageOffers(){
+        return View::render('admin/offers');
     }
 }
