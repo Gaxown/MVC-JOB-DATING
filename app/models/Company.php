@@ -1,16 +1,16 @@
 <?php
-
-namespace App\Models;
+namespace App\models;
 
 use App\Core\Model;
+use App\Models\Announcement;
 
-class Company extends Model
-{
-    // protected $table = 'companies';
-    protected $fillable = ['name', 'email', 'logo', 'website'];
+class Company extends Model {
+    protected $table = "companies";
+    protected $fillable = ['name','logo','cover','description','website','service','effective','location','capital'];
 
-    public function announcements()
-    {
-        return $this->hasMany(Announcement::class);
+    public function announcements(){
+        $this->hasMany(Announcement::class);
     }
+
+    public $timestamps = true;
 }

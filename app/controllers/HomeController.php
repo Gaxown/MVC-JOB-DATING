@@ -35,6 +35,18 @@ class HomeController extends Controller
                 return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
         }
         return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
+    }
 
+    public function dashboard()
+    {
+        return View::render('admin/dashbord');
+    }
+    public function users()
+    {
+        return View::render('admin/users');
+    }
+    public function announcements()
+    {
+        return View::render('admin/announcements');
     }
 }
