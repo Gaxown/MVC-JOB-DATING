@@ -6,7 +6,7 @@ use App\Core\Model;
 
 class Announcement extends Model
 {
-    protected $fillable = ['cover', 'title', 'descripttion', 'condidates_count', 'company_id'];
+    protected $fillable = ['cover', 'title', 'description', 'candidates_count', 'company_id'];
     public $timestamps = true;
 
     public static function getAllAnnouncements()

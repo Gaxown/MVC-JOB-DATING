@@ -35,7 +35,7 @@ class AnnouncementsController extends Controller
             'title' => $_POST['title'],
 
             'company_id' => Validator::validate('company_id', 'required|numeric'),
-            'condidates_count' => Validator::validate('condidates_count', 'required|numeric'),
+            'candidates_count' => Validator::validate('candidates_count', 'required|numeric'),
             'cover' => Validator::validate('cover', 'required|image|size:5000'),
             'description' => Validator::validate('description', 'required'),
         ]);
@@ -54,15 +54,15 @@ class AnnouncementsController extends Controller
         Announcement::updateOrCreate($id, [
             'title' => $_POST['title'],
             'company_id' => Validator::validate('company_id', 'required|numeric'),
-            'condidates_count' => Validator::validate('condidates_count', 'required|numeric'),
-            'cover' => Validator::validate('cover', 'required|image|size:1000'),
+            'candidates_count' => Validator::validate('candidates_count', 'required|numeric'),
+            'cover' => Validator::validate('cover', 'required|image|size:5000'),
             'description' => Validator::validate('description', 'required'),
         ]);
         header('Location: /announcements');
         exit();
     }
 
-    public function deleteAnnouncement($id)
+    public function delete($id)
     {
         Announcement::deleteInstance($id);
         header('Location: /announcements');

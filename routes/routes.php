@@ -22,14 +22,15 @@ $r->post('/admin/announcements/store', [AnnouncementsController::class, 'store']
 $r->get('/admin/announcements/details/{id}', [AnnouncementsController::class, 'show']);
 $r->get('/admin/announcements/update/{id}', [AnnouncementsController::class, 'updateForm']);
 $r->post('/admin/announcements/update/{id}', [AnnouncementsController::class, 'update']);
-$r->get('/admin/announcements/delete/{id}', [AnnouncementsController::class, 'deleteAnnouncement']);
+$r->get('/admin/announcements/delete/{id}', [AnnouncementsController::class, 'delete']);
 
 //Companies router
 $r->get('/admin/companies', [CompaniesController::class, 'index']);
 $r->get('/admin/companies/create', [CompaniesController::class, 'createForm']);
-$r->post('/admin/companies/store', [CompaniesController::class, 'createCompany']);
+$r->post('/admin/companies/store', [CompaniesController::class, 'store']);
 $r->get('/admin/companies/update/{id}', [CompaniesController::class, 'updateForm']);
-$r->post('/admin/companies/delete/{company.id}', [CompaniesController::class, 'deleteCompany']);
+$r->post('/admin/companies/update/{id}', [CompaniesController::class, 'update']);
+$r->post('/admin/companies/delete/{id}', [CompaniesController::class, 'delete']);
 
 
 
