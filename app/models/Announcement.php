@@ -6,7 +6,6 @@ use App\Core\Model;
 
 class Announcement extends Model
 {
-    // protected $table = 'announcements';
     protected $fillable = ['cover', 'title', 'descripttion', 'condidates_count', 'company_id'];
     public $timestamps = true;
 
@@ -44,7 +43,7 @@ class Announcement extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function getCompanyUsername()
+    public function getCompany()
     {
         return Company::find($this->company_id);
     }

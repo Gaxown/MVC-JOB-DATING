@@ -18,6 +18,7 @@ use App\Controllers\AnnouncementsController;
 $r->get('/announcements', [AnnouncementsController::class, 'index']);
 $r->get('/announcements/create', [AnnouncementsController::class, 'createForm']);
 $r->post('/announcements/create', [AnnouncementsController::class, 'store']);
+$r->get('/announcements/details/{id}', [AnnouncementsController::class, 'show']);
 $r->get('/announcements/edit/{id}', [AnnouncementsController::class, 'editForm']);
 $r->post('/announcements/edit/{id}', [AnnouncementsController::class, 'update']);
 $r->get('/announcements/delete/{id}', [AnnouncementsController::class, 'deleteAnnouncement']);
