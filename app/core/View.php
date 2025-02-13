@@ -13,7 +13,8 @@ class View
     public static function init()
     {
         $loader = new FilesystemLoader('../app/views');
-        self::$twig = new Environment($loader, []);
+        self::$twig = new Environment($loader, [], ['debug' => true]);
+        self::$twig->addExtension(new \Twig\Extension\DebugExtension());
 
         self::$twig->addFunction(new TwigFunction('auth', function () {
             return Auth::user();
