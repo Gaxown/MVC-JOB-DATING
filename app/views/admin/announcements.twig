@@ -10,14 +10,14 @@
 </head>
 <body class="bg-gray-100">
     <!-- Sidebar -->
-    {% include 'admin/sidebar_admin.twig' %}
+{% include 'tools/sidebar_admin.twig' %}
 
     <!-- Main Content -->
     <div class="ml-64 p-8">
     <div class="bg-white rounded-lg shadow">
         <div class="p-6 border-b border-gray-200 flex justify-between items-center">
             <h2 class="text-xl font-semibold">Job Offers Management</h2>
-            <a href="/offers/create" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
+            <a href="/admin/announcements/create" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
                 <i class='bx bx-plus mr-2'></i>Add New Offer
             </a>
         </div>

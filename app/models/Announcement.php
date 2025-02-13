@@ -48,12 +48,4 @@ class Announcement extends Model
     {
         return $this->belongsTo(Company::class);
     }
-<<<<<<< HEAD
-=======
-
-    public function getCompany()
-    {
-        return Company::find($this->company_id);
-    }
->>>>>>> 479058c5dc89b1c11524e58f179671fd30ff8503
 }

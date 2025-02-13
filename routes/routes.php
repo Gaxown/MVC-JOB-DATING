@@ -16,28 +16,26 @@ $r->post('/register', [AuthController::class, 'register']);
 //Annoucements
 use App\Controllers\AnnouncementsController;
 
-$r->get('/announcements', [AnnouncementsController::class, 'index']);
-$r->get('/announcements/create', [AnnouncementsController::class, 'createForm']);
-$r->post('/announcements/create', [AnnouncementsController::class, 'store']);
-$r->get('/announcements/details/{id}', [AnnouncementsController::class, 'show']);
-$r->get('/announcements/edit/{id}', [AnnouncementsController::class, 'editForm']);
-$r->post('/announcements/edit/{id}', [AnnouncementsController::class, 'update']);
-$r->get('/announcements/delete/{id}', [AnnouncementsController::class, 'deleteAnnouncement']);
+$r->get('/admin/announcements', [AnnouncementsController::class, 'index']);
+$r->get('/admin/announcements/create', [AnnouncementsController::class, 'createForm']);
+$r->post('/admin/announcements/store', [AnnouncementsController::class, 'store']);
+$r->get('/admin/announcements/details/{id}', [AnnouncementsController::class, 'show']);
+$r->get('/admin/announcements/update/{id}', [AnnouncementsController::class, 'updateForm']);
+$r->post('/admin/announcements/update/{id}', [AnnouncementsController::class, 'update']);
+$r->get('/admin/announcements/delete/{id}', [AnnouncementsController::class, 'deleteAnnouncement']);
 
 //Companies router
 $r->get('/admin/companies', [CompaniesController::class, 'index']);
-$r->post('/admin/addCompany', [CompaniesController::class, 'createCompany']);
-$r->get('/admin/addCompany', [CompaniesController::class, 'showFormCreateCompany']);
-$r->get('/admin/company/update/{id}', [CompaniesController::class, 'showFormUpdateCompany']);
-// $r->post('/admin/companies/edit/{company.id}', [CompaniesController::class, 'updateCompany']);
+$r->get('/admin/companies/create', [CompaniesController::class, 'createForm']);
+$r->post('/admin/companies/store', [CompaniesController::class, 'createCompany']);
+$r->get('/admin/companies/update/{id}', [CompaniesController::class, 'updateForm']);
 $r->post('/admin/companies/delete/{company.id}', [CompaniesController::class, 'deleteCompany']);
 
 
 
 $r->get('/', [HomeController::class, 'index']);
-$r->get('/admin/dashbord', [HomeController::class, 'dashboardAdmin']);
-$r->get('/admin/users', [HomeController::class, 'pageUsers']);
-$r->get('/admin/offers', [HomeController::class, 'pageOffers']);
+$r->get('/admin/dashbord', [HomeController::class, 'dashboard']);
+$r->get('/admin/users', [HomeController::class, 'users']);
 
 
 $r->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
