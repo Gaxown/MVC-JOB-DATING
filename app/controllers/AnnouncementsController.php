@@ -18,7 +18,7 @@ class AnnouncementsController extends Controller
     public function show($id)
     {
         $announcement = Announcement::find($id);
-        return View::render('announcements/show', compact('announcement'));
+        return View::render('home/details', compact('announcement'));
     }
 
     public function createForm()
