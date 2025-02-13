@@ -6,7 +6,6 @@ use App\Core\Model;
 
 class Announcement extends Model
 {
-    // protected $table = 'announcements';
     protected $fillable = ['cover', 'title', 'descripttion', 'condidates_count', 'company_id'];
     public $timestamps = true;
 
@@ -49,4 +48,12 @@ class Announcement extends Model
     {
         return $this->belongsTo(Company::class);
     }
+<<<<<<< HEAD
+=======
+
+    public function getCompany()
+    {
+        return Company::find($this->company_id);
+    }
+>>>>>>> 479058c5dc89b1c11524e58f179671fd30ff8503
 }
