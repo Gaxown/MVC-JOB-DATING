@@ -10,14 +10,14 @@
 </head>
 <body class="bg-gray-100">
     <!-- Sidebar -->
-    {% include 'admin/sidebar_admin.twig' %}
+    {% include 'tools/sidebar_admin.twig' %}
 
     <!-- Main Content -->
     <div class="ml-64 p-8">
         <div class="bg-white rounded-lg shadow">
             <div class="p-6 border-b border-gray-200 flex justify-between items-center">
                 <h2 class="text-xl font-semibold">Companies Management</h2>
-                <a href="/admin/addCompany" class=" h-10 block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                <a href="/admin/companies/create" class=" h-10 block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                             <i class='bx bx-edit mr-1'></i>add company
                         </a>
             </div>
@@ -63,7 +63,7 @@
                             <i class='bx bx-edit mr-1'></i>Update
                         </a> #}
 
-                        <form action="/admin/company/update/{{ company.id }}" method="get" >
+                        <form action="/admin/companies/update/{{ company.id }}" method="get" >
                             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                                 <i class='bx bx-edit mr-1'></i>Update
                             </button>

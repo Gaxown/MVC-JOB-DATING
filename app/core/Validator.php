@@ -13,7 +13,12 @@ class Validator
         'max' => 'The :field must not exceed :param characters',
         'numeric' => 'The :field must be numeric',
         'match' => 'The :field must match :param',
-        'password' => 'The :field must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
+        'password' => 'The :field must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
+        'image' => 'The :field must be an image',
+        'size' => 'The :field must not exceed :param KB',
+        'unique' => 'The :field is already taken',
+        'url' => 'The :field must be a valid URL',
+
     ];
 
     public static function validate($data, $rules)
@@ -95,6 +100,35 @@ class Validator
             self::addError($field, 'password');
         }
     }
+
+    public static function validateImage($field, $value)
+    {
+        if (!preg_match('/\.(jpg|jpeg|png|gif)$/', $value)) {
+            self::addError($field, 'image');
+        }
+    }
+
+    public static function validateSize($field, $value, $size)
+    {
+        if ($_FILES[$field]['size'] / 1024 > $size) {
+            self::addError($field, 'size', ['param' => $size]);
+        }
+    }
+
+    public static function validateUnique($field, $value, $model)
+    {
+        if ($model::where($field, $value)->first()) {
+            self::addError($field, 'unique');
+        }
+    }
+
+    public static function validateUrl($field, $value)
+    {
+        if (!filter_var($value, FILTER_VALIDATE_URL)) {
+            self::addError($field, 'url');
+        }
+    }
+
 
     protected static function addError($field, $rule, $params = [])
     {

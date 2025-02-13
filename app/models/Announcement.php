@@ -38,13 +38,14 @@ class Announcement extends Model
         return $announcement;
     }
 
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
-    }
-
     public function getCompany()
     {
         return Company::find($this->company_id);
+    }
+
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 }
