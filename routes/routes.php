@@ -34,9 +34,10 @@ $r->post('/admin/announcements/restore/{id}', [AnnouncementsController::class, '
 //Companies router
 $r->get('/admin/companies', [CompaniesController::class, 'index']);
 $r->get('/admin/companies/create', [CompaniesController::class, 'createForm']);
-$r->post('/admin/companies/store', [CompaniesController::class, 'createCompany']);
+$r->post('/admin/companies/store', [CompaniesController::class, 'store']);
 $r->get('/admin/companies/update/{id}', [CompaniesController::class, 'updateForm']);
-$r->post('/admin/companies/delete/{company.id}', [CompaniesController::class, 'deleteCompany']);
+$r->post('/admin/companies/update/{id}', [CompaniesController::class, 'update']);
+$r->post('/admin/companies/delete/{id}', [CompaniesController::class, 'delete']);
 
 
 
