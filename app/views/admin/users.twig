@@ -1,0 +1,54 @@
+/users.twig
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+{% include 'tools/sidebar_admin.twig' %}
+
+    <!-- Main Content -->
+    <div class="ml-64 p-8">
+        <div class="bg-white rounded-lg shadow">
+            <div class="p-6 border-b border-gray-200">
+                <h2 class="text-xl font-semibold">Users </h2>
+            </div>
+            <div class="p-6">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for user in users %}
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.id }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.name }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.email }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.role.name }}</td>
+                        </tr>
+                        {% endfor %}
+                         <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">ayoub</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">admin</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">naodr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

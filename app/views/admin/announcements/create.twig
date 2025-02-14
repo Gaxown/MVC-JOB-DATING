@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Job Offer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <!-- Change this line -->
+
+{% include 'tools/sidebar_admin.twig' %}
+    <!-- Main Content -->
+    <div class="ml-64 p-8">
+        <div class="bg-white rounded-lg shadow">
+            <div class="p-6 border-b border-gray-200">
+                <h2 class="text-xl font-semibold">Add New Job Offer</h2>
+            </div>
+            <div class="p-6">
+                <form action="/offers/store" method="POST" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Job Title -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Job Title</label>
+                            <input type="text" name="title"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+
+                        <!-- Company Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Company</label>
+                            <select name="company_id"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">Select a company</option>
+                                {% for company in companies %}
+                                    <option value="{{ company.id }}">{{ company.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Number of Candidates -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Number of Candidates Needed</label>
+                            <input type="number" name="candidates_needed" min="1"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+
+                        <!-- Cover Image URL -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Cover Image URL</label>
+                            <input type="file" name="cover_url"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+
+                        <!-- Job Description -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Job Description</label>
+                            <textarea name="description" rows="4"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+
+                        <!-- Requirements -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Requirements</label>
+                            <textarea name="requirements" rows="4"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <div class="flex justify-end space-x-4 pt-4">
+                        <a href="/offers" 
+                            class="px-6 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
+                            Cancel
+                        </a>
+                        <button type="submit" 
+                            class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            Create Offer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
