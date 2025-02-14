@@ -26,21 +26,21 @@
                     <div class="grid grid-cols-2 gap-6">
                         <!-- Company Name -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Company Name <span class="text-red-500">*</span></label>
                             <input type="text" name="name" value="{{ company.name}}"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
 
                         <!-- Website -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Website</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Website <span class="text-red-500">*</span></label>
                             <input type="url" name="website" value="{{ company.website }}" 
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
 
                         <!-- Logo URL -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Logo Image</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Logo Image <span class="text-red-500">*</span></label>
                             {% if company.logo %}
                                 <img src="{{ company.logo }}" alt="Current Logo" class="mb-2" style="max-width: 100px;">
                             {% endif %}
@@ -50,7 +50,7 @@
 
                         <!-- Cover Image URL -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Cover Image</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Cover Image <span class="text-red-500">*</span></label>
                             {% if company.cover %}
                                 <img src="{{ company.cover }}" alt="Current Cover" class="mb-2" style="max-width: 100px;">
                             {% endif %}
@@ -60,28 +60,28 @@
 
                         <!-- Location -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Location <span class="text-red-500">*</span></label>
                             <input type="text" name="location" value="{{ company.location }}" 
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
 
                         <!-- Effective (Employee Count) -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Number of Employees</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Number of Employees <span class="text-red-500">*</span></label>
                             <input type="number" name="effective" value="{{ company.effective }}" 
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
 
                         <!-- Capital -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Capital</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Capital <span class="text-red-500">*</span></label>
                             <input type="number" name="capital" value="{{ company.capital }}" 
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
 
                         <!-- Services -->
                         <div class="col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Services</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Services <span class="text-red-500">*</span></label>
                             <input type="text" name="service" value="{{ company.service }}" 
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter services separated by commas">
@@ -89,7 +89,7 @@
 
                         <!-- Description -->
                         <div class="col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Description <span class="text-red-500">*</span><span class="text-xs">(si vous disposez de plusieurs services, utilisez une virgule pour les séparer) </span></label>
                             <textarea name="description" id="description" rows="4"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                         </div>
