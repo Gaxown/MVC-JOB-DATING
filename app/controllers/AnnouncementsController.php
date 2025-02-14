@@ -38,7 +38,6 @@ class AnnouncementsController extends Controller
     {
         Announcement::create([
             'title' => $_POST['title'],
-
             'company_id' => Validator::validate('company_id', 'required|numeric'),
             'candidates_count' => Validator::validate('candidates_count', 'required|numeric'),
             'cover' => Validator::validate('cover', 'required|image|size:5000'),

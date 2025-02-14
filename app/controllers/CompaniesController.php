@@ -18,10 +18,27 @@ class CompaniesController extends Controller
 
     public function store()
     {
+        $uploadDir = '../../public/assets/uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+        $logoPath = null;
+        $coverPath = null;
+
+        if(isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK){
+            $logoPath = $uploadDir . $_FILES['logo']['name'];
+            move_uploaded_file($_FILES['logo']['tmp_name'], $logoPath);
+        }
+
+        if(isset($_FILES['cover']) && $_FILES['cover']['error'] === UPLOAD_ERR_OK){
+            $logoPath = $uploadDir . $_FILES['cover']['name'];
+            move_uploaded_file($_FILES['cover']['tmp_name'], $logoPath);
+        }
+
         $company = [
             'name' => Validator::validate($_POST['name'], 'required'),
-            'logo' => Validator::validate($_POST['logo'], 'required|image|size:5000'),
-            'cover' => Validator::validate($_POST['cover'], 'required|image|size:5000'),
+            'logo' => $logoPath,
+            'cover' => $coverPath,
             'description' => Validator::validate($_POST['description'], 'required'),
             'website' => Validator::validate($_POST['website'], 'required'),
             'service' => Validator::validate($_POST['service'], 'required'),
