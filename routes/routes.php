@@ -22,7 +22,14 @@ $r->post('/admin/announcements/store', [AnnouncementsController::class, 'store']
 $r->get('/admin/announcements/details/{id}', [AnnouncementsController::class, 'show']);
 $r->get('/admin/announcements/update/{id}', [AnnouncementsController::class, 'updateForm']);
 $r->post('/admin/announcements/update/{id}', [AnnouncementsController::class, 'update']);
-$r->get('/admin/announcements/delete/{id}', [AnnouncementsController::class, 'delete']);
+$r->get('/admin/announcements/delete/{id}', [AnnouncementsController::class, 'softDeleteAnnouncement']);
+
+// soft delete
+
+$r->get('/admin/removedOffers', [AnnouncementsController::class, 'removed']);
+$r->post('/admin/announcements/softdelete/{id}', [AnnouncementsController::class, 'softDeleteAnnouncement']);
+$r->post('/admin/announcements/restore/{id}', [AnnouncementsController::class, 'restoreAnnouncement']);
+
 
 //Companies router
 $r->get('/admin/companies', [CompaniesController::class, 'index']);
@@ -37,6 +44,7 @@ $r->post('/admin/companies/delete/{id}', [CompaniesController::class, 'delete'])
 $r->get('/', [HomeController::class, 'index']);
 $r->get('/admin/dashbord', [HomeController::class, 'dashboard']);
 $r->get('/admin/users', [HomeController::class, 'users']);
+
 
 
 $r->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

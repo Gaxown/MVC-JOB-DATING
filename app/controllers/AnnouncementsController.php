@@ -16,6 +16,11 @@ class AnnouncementsController extends Controller
         $announcements = Announcement::all();
         return View::render('admin/announcements', compact('announcements'));
     }
+    public function removed()
+    {
+        $announcements = Announcement::onlyTrashed()->get();
+        return View::render('admin/removed', compact('announcements'));
+    }
 
     public function show($id)
     {
@@ -62,10 +67,23 @@ class AnnouncementsController extends Controller
         exit();
     }
 
-    public function delete($id)
+    public function softDeleteAnnouncement($id)
     {
-        Announcement::deleteInstance($id);
-        header('Location: /announcements');
+        $announcement = Announcement::findOrFail($id);
+        $announcement->delete();
+        header('Location: /admin/announcements');
+        exit();
+    }
+
+    public function showSoftDeleted()
+    {
+        $announcements = Announcement::getAllSoftDeletedAnnouncements();
+        return View::render('admin/removed', compact('announcements'));
+    }
+    public function restoreAnnouncement($id)
+    {
+        $announcement = Announcement::restoreAnnouncement($id);
+        header('Location: /admin/removedOffers');
         exit();
     }
 }
