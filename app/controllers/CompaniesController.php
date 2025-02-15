@@ -19,15 +19,15 @@ class CompaniesController extends Controller
     public function store()
     {
         $company = [
-            'name' => Validator::validate($_POST['name'], 'required'),
-            'logo' => Validator::validate($_POST['logo'], 'required|image|size:5000'),
-            'cover' => Validator::validate($_POST['cover'], 'required|image|size:5000'),
-            'description' => Validator::validate($_POST['description'], 'required'),
-            'website' => Validator::validate($_POST['website'], 'required'),
-            'service' => Validator::validate($_POST['service'], 'required'),
-            'effective' => Validator::validate($_POST['effective'], 'required'),
-            'location' => Validator::validate($_POST['location'], 'required'),
-            'capital' => Validator::validate($_POST['capital'], 'required'),
+            'name' => Validator::validate($_POST['name'], 'required')? $_POST['name'] : '',
+            'logo' => Validator::validate($_POST['logo'], 'required|image|size:5000')? $_POST['logo'] : '',
+            'cover' => Validator::validate($_POST['cover'], 'required|image|size:5000')? $_POST['cover'] : '',
+            'description' => Validator::validate($_POST['description'], 'required')? $_POST['description'] : '',
+            'website' => Validator::validate($_POST['website'], 'required')? $_POST['website'] : '',
+            'service' => Validator::validate($_POST['service'], 'required')? $_POST['service'] : '',
+            'effective' => Validator::validate($_POST['effective'], 'required')? $_POST['effective'] : '',
+            'location' => Validator::validate($_POST['location'], 'required')? $_POST['location'] : '',
+            'capital' => Validator::validate($_POST['capital'], 'required')? $_POST['capital'] : '',
         ];
         Company::create($company);
         header('Location:/admin/companies');
