@@ -59,6 +59,11 @@ class Model extends Eloquent
         $instance->delete();
     }
 
+    public function softDelete($id)
+    {
+        $instance = static::findOrFail($id);
+        $instance->delete();
+    }
     public static function testConnection()
     {
         try {

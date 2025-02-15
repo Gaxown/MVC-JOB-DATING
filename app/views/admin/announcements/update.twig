@@ -7,16 +7,18 @@
     <title>Add New Job Offer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 </head>
 <body class="bg-gray-100">
     <!-- Sidebar -->
     <!-- Change this line -->
 
-{% include 'admin/sidebar_admin.twig' %}
+{% include 'tools/sidebar_admin.twig' %}
     <!-- Main Content -->
     <div class="ml-64 p-8">
         <div class="bg-white rounded-lg shadow">
             <div class="p-6 border-b border-gray-200">
+            
                 <h2 class="text-xl font-semibold">Add New Job Offer</h2>
             </div>
             <div class="p-6">
@@ -72,7 +74,7 @@
 
                     <!-- Submit Buttons -->
                     <div class="flex justify-end space-x-4 pt-4">
-                        <a href="/offers" 
+                        <a href="/admin/announcements" 
                             class="px-6 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
                             Cancel
                         </a>
