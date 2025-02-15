@@ -25,5 +25,6 @@ $r->get('/announcements/delete/{id}', [AnnouncementsController::class, 'deleteAn
 
 
 
+
 $r->get('/', [HomeController::class, 'index']);
 $r->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

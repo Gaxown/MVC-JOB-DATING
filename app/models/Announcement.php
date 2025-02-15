@@ -6,7 +6,6 @@ use App\Core\Model;
 
 class Announcement extends Model
 {
-    // protected $table = 'announcements';
     protected $fillable = ['cover', 'title', 'descripttion', 'condidates_count', 'company_id'];
     public $timestamps = true;
 
