@@ -229,4 +229,41 @@ class AnnouncementsController extends Controller
         header('Location: /admin/removedOffers');
         exit();
     }
+
+    public function search()
+    {
+        // Vérifier si c'est une requête AJAX
+        if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+            header('HTTP/1.1 400 Bad Request');
+            exit('Invalid request');
+        }
+
+        // Récupérer et nettoyer le terme de recherche
+        $query = isset($_POST['query']) ? Security::clean($_POST['query']) : '';
+
+        // Effectuer la recherche dans la base de données
+        $announcements = Announcement::where('title', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->with('company')
+            ->get();
+
+        // Préparer les données pour la réponse JSON
+        $results = [];
+        foreach ($announcements as $announcement) {
+            $results[] = [
+                'id' => $announcement->id,
+                'title' => $announcement->title,
+                'company_name' => $announcement->company->name,
+                'description' => substr($announcement->description, 0, 100) . '...',
+                'candidates_count' => $announcement->candidates_count,
+                'created_at' => date('d M Y', strtotime($announcement->created_at)),
+                'cover' => $announcement->cover
+            ];
+        }
+
+        // Envoyer la réponse JSON
+        header('Content-Type: application/json');
+        echo json_encode(['announcements' => $results]);
+        exit();
+    }
 }
