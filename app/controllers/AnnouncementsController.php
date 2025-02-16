@@ -181,8 +181,11 @@ class AnnouncementsController extends Controller
                 $errors[$field] = Validator::getErrors()[$field] ?? ['This field is required'];
             }
         }
+
+        // $logoPath = $_POST['existing_logo'] ?? '';
+        $coverPath = $_POST['existing_cover'] ?? '';
     
-        $coverPath = '';
+        // $coverPath = '';
         if (empty($errors)) {
             try {
                 if (isset($_FILES['cover']) && $_FILES['cover']['size'] > 0) {

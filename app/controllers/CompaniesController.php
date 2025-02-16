@@ -59,8 +59,8 @@ class CompaniesController extends Controller
 
                 $company = [
                     'name' => $_POST['name'],
-                    'logo' => $_POST['logo'],
-                    'cover' => $_POST['cover'],
+                    'logo' => $logoPath,
+                    'cover' => $coverPath,
                     'description' => $_POST['description'],
                     'website' => $_POST['website'],
                     'service' => $_POST['service'],
