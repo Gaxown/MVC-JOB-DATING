@@ -22,7 +22,7 @@
                 <h2 class="text-xl font-semibold">Update Company</h2>
             </div>
             <div class="p-6">
-                <form action="/admin/companies/update/{{ company.id }}" method="POST" class="space-y-6">
+                <form action="/admin/companies/update/{{ company.id }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                     <div class="grid grid-cols-2 gap-6">
                         <!-- Company Name -->
                         <div>

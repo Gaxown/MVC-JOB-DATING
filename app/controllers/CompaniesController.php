@@ -120,6 +120,7 @@ class CompaniesController extends Controller
         var_dump($errors);
         return View::render('admin/companies/create', $errors);
     }
+    
     public function updateForm($id)
     {
         $company = Company::find($id);
