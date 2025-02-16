@@ -59,8 +59,8 @@ class CompaniesController extends Controller
 
                 $company = [
                     'name' => $_POST['name'],
-                    'logo' => $logoPath,
-                    'cover' => $coverPath,
+                    'logo' => $_POST['logo'],
+                    'cover' => $_POST['cover'],
                     'description' => $_POST['description'],
                     'website' => $_POST['website'],
                     'service' => $_POST['service'],
@@ -120,6 +120,7 @@ class CompaniesController extends Controller
         var_dump($errors);
         return View::render('admin/companies/create', $errors);
     }
+    
     public function updateForm($id)
     {
         $company = Company::find($id);

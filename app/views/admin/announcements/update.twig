@@ -22,23 +22,27 @@
                 <h2 class="text-xl font-semibold">Add New Job Offer</h2>
             </div>
             <div class="p-6">
-                <form action="/offers/store" method="POST" class="space-y-6">
+                <form action="/admin/announcements/update/{{ announcement.id }}" method="POST" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Job Title -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Job Title</label>
-                            <input type="text" name="title" required
+                            <input type="text" name="title" required value="{{ announcement.title }}"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
 
                         <!-- Company Selection -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Company</label>
-                            <select name="company_id" required
+                            <select name="company_id"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 <option value="">Select a company</option>
                                 {% for company in companies %}
-                                    <option value="{{ company.id }}">{{ company.name }}</option>
+                                    {# <option value="{{ company.id }}">{{ company.name }}</option> #}
+                                     <option value="{{ company.id }}" 
+                                        {% if company.id == announcement.company_id %}selected{% endif %}>
+                                        {{ company.name }}
+                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -46,28 +50,36 @@
                         <!-- Number of Candidates -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Number of Candidates Needed</label>
-                            <input type="number" name="candidates_needed" min="1" required
+                            <input type="number" name="candidates_needed" min="1" value="{{ announcement.candidates_count }}"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
 
                         <!-- Cover Image URL -->
-                        <div>
+                        {# <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Cover Image URL</label>
-                            <input type="url" name="cover_url" required
+                            <input type="url" name="cover_url" required value="{{ announcement.cover }}"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div> #}
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Cover Image <span class="text-red-500">*</span></label>
+                            {% if announcement.cover %}
+                                <img src="{{ announcement.cover }}" alt="Current Cover" class="mb-2" style="max-width: 100px;">
+                            {% endif %}
+                            <input type="file" name="cover" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="hidden" name="existing_cover" value="{{ announcement.cover }}">
                         </div>
 
                         <!-- Job Description -->
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Job Description</label>
-                            <textarea name="description" rows="4" required
+                            <textarea name="description" rows="4" id="description"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                         </div>
 
                         <!-- Requirements -->
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Requirements</label>
-                            <textarea name="requirements" rows="4" required
+                            <textarea name="requirements" rows="4" id="requirements"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                         </div>
                     </div>
@@ -88,4 +100,9 @@
         </div>
     </div>
 </body>
+
+<script>
+    document.getElementById("description").value = "{{ announcement.description }}";
+    document.getElementById("requirements").value = "{{ announcement.requirements }}";
+</script>
 </html>
