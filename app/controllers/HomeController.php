@@ -7,6 +7,8 @@ use App\Core\Auth;
 use App\Core\Middleware;
 use App\Core\View;
 use App\Models\Announcement;
+use App\Models\User;
+use App\Models\Company;
 
 class HomeController extends Controller
 {
@@ -28,7 +30,15 @@ class HomeController extends Controller
 
         switch ($user->role->name) {
             case 'admin':
-                return View::render('admin/dashbord', ['user' => $user, 'announcements' => $announcements]);
+                $totalUsers = User::count();
+                $totalCompanies = Company::count();
+                $totalOffers = Announcement::count();
+        
+                return View::render('admin/dashbord', [
+                    'totalUsers' => $totalUsers,
+                    'totalCompanies' => $totalCompanies,
+                    'totalOffers' => $totalOffers
+                ]);
             case 'user':
                 return View::render('home/home', ['user' => $user, 'announcements' => $announcements]);
             default:
@@ -38,12 +48,22 @@ class HomeController extends Controller
     }
 
     public function dashboard()
-    {
-        return View::render('admin/dashbord');
+    {   
+        $totalUsers = User::count();
+        $totalCompanies = Company::count();
+        $totalOffers = Announcement::count();
+
+        return View::render('admin/dashbord', [
+            'totalUsers' => $totalUsers,
+            'totalCompanies' => $totalCompanies,
+            'totalOffers' => $totalOffers
+        ]);
+        // return View::render('admin/dashbord');
     }
     public function users()
-    {
-        return View::render('admin/users');
+    {   
+        $users = User::all();
+        return View::render('admin/users', compact('users'));
     }
     public function announcements()
     {
