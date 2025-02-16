@@ -46,7 +46,7 @@ class AnnouncementsController extends Controller
             'title' => ['required'],
             'company_id' => ['required', 'numeric'],
             'candidates_count' => ['required', 'numeric'],
-            'cover' => ['required', 'image', 'size:5000'],
+            // 'cover' => ['required', 'image', 'size:5000'],
             'description' => ['required'],
         ];
     
@@ -155,20 +155,58 @@ class AnnouncementsController extends Controller
 
     public function editForm($id)
     {
+        $companies = Company::getAllCompanies();
         $announcement = Announcement::find($id);
-        return View::render('announcements/update', compact('announcement'));
+        return View::render('admin/announcements/update', compact('announcement', 'companies'));
+      
     }
 
     public function update($id)
-    {
-        Announcement::updateOrCreate($id, [
-            'title' => $_POST['title'],
-            'company_id' => Validator::validate('company_id', 'required|numeric'),
-            'candidates_count' => Validator::validate('candidates_count', 'required|numeric'),
-            'cover' => Validator::validate('cover', 'required|image|size:5000'),
-            'description' => Validator::validate('description', 'required'),
-        ]);
-        header('Location: /announcements');
+    {    $errors = [];
+        foreach ($_POST as $key => $value) {
+            $_POST[$key] = Security::clean($value);
+        }
+    
+        $validations = [
+            'title' => ['required'],
+            'company_id' => ['required', 'numeric'],
+            'candidates_count' => ['required', 'numeric'],
+            // 'cover' => ['required', 'image', 'size:5000'],
+            'description' => ['required'],
+        ];
+    
+        foreach ($validations as $field => $rules) {
+            if (!isset($_POST[$field]) || !Validator::validate($_POST[$field], implode('|', $rules))) {
+                $errors[$field] = Validator::getErrors()[$field] ?? ['This field is required'];
+            }
+        }
+    
+        $coverPath = '';
+        if (empty($errors)) {
+            try {
+                if (isset($_FILES['cover']) && $_FILES['cover']['size'] > 0) {
+                    $coverPath = $this->handleFileUpload($_FILES['cover'], 'covers');
+                }
+                $announcement = [
+                    'title' => $_POST['title'],
+                    'company_id' => $_POST['company_id'],
+                    'candidates_count' => $_POST['candidates_count'],
+                    'cover' => $coverPath,
+                    'description' => $_POST['description'],
+                ];
+             
+              
+                // Announcement::updateOrCreate($id , $announcement);
+                Announcement::where('id', $id)->update($announcement);
+                header('Location: /admin/announcements');
+                exit();
+            } catch (\Exception $e) {
+                $errors['file'] = [$e->getMessage()];
+            }
+        }
+    
+        return View::render('admin/announcements/update', ['errors' => $errors]);
+      
         exit();
     }
 
@@ -189,6 +227,43 @@ class AnnouncementsController extends Controller
     {
         $announcement = Announcement::restoreAnnouncement($id);
         header('Location: /admin/removedOffers');
+        exit();
+    }
+
+    public function search()
+    {
+        // Vérifier si c'est une requête AJAX
+        if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+            header('HTTP/1.1 400 Bad Request');
+            exit('Invalid request');
+        }
+
+        // Récupérer et nettoyer le terme de recherche
+        $query = isset($_POST['query']) ? Security::clean($_POST['query']) : '';
+
+        // Effectuer la recherche dans la base de données
+        $announcements = Announcement::where('title', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->with('company')
+            ->get();
+
+        // Préparer les données pour la réponse JSON
+        $results = [];
+        foreach ($announcements as $announcement) {
+            $results[] = [
+                'id' => $announcement->id,
+                'title' => $announcement->title,
+                'company_name' => $announcement->company->name,
+                'description' => substr($announcement->description, 0, 100) . '...',
+                'candidates_count' => $announcement->candidates_count,
+                'created_at' => date('d M Y', strtotime($announcement->created_at)),
+                'cover' => $announcement->cover
+            ];
+        }
+
+        // Envoyer la réponse JSON
+        header('Content-Type: application/json');
+        echo json_encode(['announcements' => $results]);
         exit();
     }
 }
