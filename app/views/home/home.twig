@@ -52,19 +52,53 @@
     <!-- Include Footer -->
     {% include 'tools/footer.twig' %}
 <script>
-        // Fonction de recherche
-        $(document).ready(function() {
-            $("#search").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#job-offers .job-offer").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    $(document).ready(function() {
+        let searchTimeout;
+        
+        $("#search").on("keyup", function() {
+            clearTimeout(searchTimeout);
+            const searchValue = $(this).val();
+            
+            // Attendre 500ms après la dernière frappe avant d'envoyer la requête
+            searchTimeout = setTimeout(function() {
+                $.ajax({
+                    url: '/search-announcements',
+                    method: 'POST',
+                    data: { query: searchValue },
+                    success: function(response) {
+                        $('#job-offers').empty();
+                        
+                        if (response.announcements && response.announcements.length > 0) {
+                            response.announcements.forEach(function(announcement) {
+                                const jobOffer = `
+                                    <div class="bg-white shadow-md rounded-lg overflow-hidden job-offer w-80 h-auto">
+                                        <img src="${announcement.cover}" alt="Company Logo" class="w-full h-48 object-cover">
+                                        <div class="p-6">
+                                            <h2 class="text-xl font-semibold mb-2">${announcement.title}</h2>
+                                            <p class="text-gray-600 mb-4">${announcement.company_name}</p>
+                                            <p class="text-gray-700 mb-4">${announcement.description}</p>
+                                            <p class="text-sm text-gray-500">Candidatures: ${announcement.candidates_count}</p>
+                                            <p class="text-sm text-gray-500">Publié le: ${announcement.created_at}</p>
+                                            <form action="/admin/announcements/details/${announcement.id}" method="GET">
+                                                <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">Consulter les details</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                                $('#job-offers').append(jobOffer);
+                            });
+                        } else {
+                            $('#job-offers').html('<p class="text-center text-gray-500">Aucune annonce trouvée</p>');
+                        }
+                    },
+                    error: function() {
+                        $('#job-offers').html('<p class="text-center text-red-500">Une erreur est survenue lors de la recherche</p>');
+                    }
                 });
-            });
-
+            }, 500);
         });
+    });
 </script>
-
-
      
 </body>
 </html>
